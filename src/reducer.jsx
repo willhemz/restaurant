@@ -12,9 +12,18 @@ export const reducer = (state, action) => {
     case 'OFFLOAD':
       state = { ...state, loading: false }
       break
+    case 'SET_CONTENT':
+      state = { ...state, meals: action.payload }
+      break
+    case 'REMOVE_CONTENT':
+      state = { ...state, meals: [] }
+      break
+    case 'ERROR':
+      state = { ...state, loading: false, error: true }
+      break
 
     default:
-      break
+      state = { ...state }
   }
   return state
 }

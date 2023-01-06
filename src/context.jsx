@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useCallback, useContext, useEffect, useReducer } from 'react'
 import { reducer } from './reducer'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
@@ -6,6 +6,7 @@ const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 const contextAPI = React.createContext()
 const defaultState = {
   loading: true,
+  isError: false,
   searchMeal: 'a',
   searchDrink: 'a',
   drinks: [],
@@ -14,32 +15,64 @@ const defaultState = {
 const GenContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
-  const fetchMeals = async () => {
+  const fetchMeals = useCallback(async () => {
     dispatch({ type: 'LOADING' })
     try {
       const res = await fetch(`${url}${state.searchMeal}`)
       const data = await res.json()
       const { meals } = data
-      console.log(meals)
+      if (meals) {
+        const newMeals = meals.map((item) => {
+          const {
+            idMeal,
+            strMeal,
+            strMealThumb,
+            strCategory,
+            strArea,
+            strIngredient1: ig1,
+            strIngredient2: ig2,
+            strIngredient3: ig3,
+            strIngredient4: ig4,
+            strIngredient5: ig5,
+            strIngredient6: ig6,
+            strIngredient7: ig7,
+            strIngredient8: ig8,
+            strIngredient9: ig9,
+            strIngredient10: ig10,
+          } = item
+          return {
+            id: idMeal,
+            name: strMeal,
+            image: strMealThumb,
+            category: strCategory,
+            area: strArea,
+            ingredients: [ig1, ig2, ig3, ig4, ig5, ig6, ig7, ig8, ig9, ig10],
+          }
+        })
+        dispatch({ type: 'SET_CONTENT', payload: newMeals })
+      } else {
+        dispatch({ type: 'REMOVE_CONTENT' })
+      }
       dispatch({ type: 'OFFLOAD' })
     } catch (error) {
       console.log(error)
+      dispatch({ type: 'ERROR' })
     }
-  }
+  }, [state.searchMeal])
 
-  // useEffect(() => {
-  //   fetchMeals()
-  // }, [])
+  useEffect(() => {
+    fetchMeals()
+  }, [fetchMeals])
 
-  const searchMeal = (val) => {
+  const handleMeal = (val) => {
     dispatch({ type: 'SEARCH_MEAL', payload: val })
   }
-  const searchDrink = (val) => {
+  const handleDrink = (val) => {
     dispatch({ type: 'SEARCH_DRINK', payload: val })
   }
 
   return (
-    <contextAPI.Provider value={{ ...state, searchMeal, searchDrink }}>
+    <contextAPI.Provider value={{ ...state, handleMeal, handleDrink }}>
       {children}
     </contextAPI.Provider>
   )

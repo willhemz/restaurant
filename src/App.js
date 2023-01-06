@@ -1,7 +1,6 @@
 import { createBrowserRouter as browse } from 'react-router-dom'
 import { Layout, Error } from './component'
-import { Home } from './pages'
-import Category from './pages/Category'
+import { Home, Category, Meal } from './pages'
 
 export const router = browse([
   {
@@ -16,6 +15,10 @@ export const router = browse([
       {
         path: '/category/:id',
         element: <Category />,
+      },
+      {
+        path: '/category/meal/:id',
+        element: <Meal />,
       },
     ],
   },
