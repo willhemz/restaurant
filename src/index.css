@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -62,7 +64,7 @@
   }
   /* Header */
   .nav-container {
-    @apply flex justify-center items-center h-[70px] w-full bg-transparent p-3 fixed top-3
+    @apply flex justify-center items-center h-[70px] w-full bg-transparent p-3 fixed top-3 z-10
   }
 
   .nav-header {
@@ -98,7 +100,7 @@
   }
 
   .home {
-    @apply relative w-full h-[500px] overflow-hidden
+    @apply relative w-full h-auto overflow-hidden
   }
 
   .hero-image {
@@ -106,7 +108,16 @@
   }
 
   .home-img {
-    @apply absolute w-1/2 h-3/5 top-24 left-[calc(50%-20px)] overflow-hidden
+    @apply absolute w-4/5 h-full top-24 left-[calc(50%-20px)] overflow-hidden -skew-y-12
   }
 
+
+  /* Footer */
+  .footer {
+    @apply flex flex-col gap-3 mt-5 items-center text-xs text-red-900
+  }
+
+  .page-header {
+    @apply text-xl flex gap-2 text-red-700
+  }
 }
