@@ -49,6 +49,7 @@
 
   #root {
     position: relative;
+    width: 100%;
   }
   
   code {
@@ -114,7 +115,7 @@
 
   /* Footer */
   .footer {
-    @apply flex flex-col gap-3 mt-5 items-center text-xs text-red-900
+    @apply flex flex-col gap-3 mt-5 items-center text-xs text-red-900 mb-20
   }
 
   .page-header {

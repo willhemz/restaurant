@@ -7,6 +7,9 @@ import { CgMenuRight } from 'react-icons/cg'
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
 import { BiCategoryAlt } from 'react-icons/bi'
+import { BsCart2 } from 'react-icons/bs'
+import { IoMdNotificationsOutline } from 'react-icons/io'
+import { MdOutlineAccountCircle } from 'react-icons/md'
 
 export const hero = { logo, food, order, plates, menu, bar: <CgMenuRight /> }
 
@@ -28,9 +31,23 @@ export const socials = [
 export const sidebar = [
   { id: 1, title: 'home', icon: <AiOutlineHome />, path: '/' },
   {
-    id: 1,
+    id: 2,
     title: 'category',
     icon: <BiCategoryAlt />,
     items: ['meal', 'drink'],
+    path: '/category',
+  },
+  { id: 3, title: 'cart', icon: <BsCart2 />, path: '/cart' },
+  {
+    id: 4,
+    title: 'notification',
+    icon: <IoMdNotificationsOutline />,
+    path: '/notification',
+  },
+  {
+    id: 5,
+    title: 'account',
+    icon: <MdOutlineAccountCircle />,
+    path: '/account',
   },
 ]
