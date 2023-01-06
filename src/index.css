@@ -128,4 +128,43 @@
     display: block;
     @apply absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-t-red-500 border-l-transparent border-r-transparent;
   }
+
+  /* LOADER */
+  .loading {
+    @apply w-full h-[300px] flex items-center justify-center gap-3
+  }
+  .loader, .loader:before, .loader:after {
+    @apply w-3 bg-red-500;
+    animation: loader 1s ease-in-out infinite;
+  }
+
+  .loader {
+    animation-delay: 0.25s;
+    position: relative;
+  }
+
+  .loader:before {
+    content: '';
+    @apply absolute bottom-0 -left-5
+  }
+
+  .loader:after {
+    content: '';
+    animation-delay: 0.5s;
+    @apply absolute bottom-0 left-5  
+  }
+
+    @keyframes loader {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+
 }

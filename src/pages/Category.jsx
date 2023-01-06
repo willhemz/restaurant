@@ -1,7 +1,10 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import Loading from '../component/Loading'
+import { useGenContext } from '../context'
 
 const Category = () => {
+  const { loading } = useGenContext()
   const { id } = useParams()
 
   return (
@@ -21,6 +24,7 @@ const Category = () => {
                 placeholder='search your favorite meals...'
               />
             </article>
+            {loading ? <Loading /> : <article className='footer'></article>}
           </>
         ) : (
           <></>
