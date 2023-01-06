@@ -121,4 +121,11 @@
   .page-header {
     @apply text-xl flex gap-2 text-red-700
   }
+
+  /* Sidebar */
+  .flowbar::before {
+    content: '';
+    display: block;
+    @apply absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-r-[5px] border-t-[5px] border-t-red-500 border-l-transparent border-r-transparent;
+  }
 }
