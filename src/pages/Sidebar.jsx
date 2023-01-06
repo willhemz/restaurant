@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { sidebar } from '../component/data'
-import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
+  const navigate = useNavigate()
+  const [view, setView] = useState(false)
+  const handleClick = (val, x) => {
+    switch (val) {
+      case 'category':
+        setView(!view)
+        break
+      default:
+        navigate(x)
+    }
+  }
   return (
     <aside className='sidebar p-5 flex w-full gap-2 justify-between fixed bottom-0 bg-red-900 shadow-lg shadow-black text-red-100'>
       {sidebar.map((item) => {
-        const { id, icon, path, items, title } = item
+        const { id, icon, title } = item
         let view = 'hidden'
         if (title.toLowerCase() === 'cart') view = 'block'
         return (
-          <button key={id} className='aside--item flex flex-col items-center'>
+          <button
+            onClick={() => handleClick(title)}
+            key={id}
+            className='aside--item flex flex-col items-center'>
             <div className='text-2xl relative'>
               {icon}
               <p
@@ -25,7 +39,5 @@ const Sidebar = () => {
     </aside>
   )
 }
-
-Sidebar.propTypes = {}
 
 export default Sidebar
