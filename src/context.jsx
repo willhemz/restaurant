@@ -3,6 +3,8 @@ import { reducer } from './reducer'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
+const link = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+
 const contextAPI = React.createContext()
 const defaultState = {
   loading: true,
@@ -11,6 +13,8 @@ const defaultState = {
   searchDrink: 'a',
   drinks: [],
   meals: [],
+  cart: [],
+  cartNumber: 0,
 }
 const GenContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState)
@@ -64,6 +68,57 @@ const GenContext = ({ children }) => {
     fetchMeals()
   }, [fetchMeals])
 
+  const fetchDrinks = useCallback(async () => {
+    dispatch({ type: 'LOADING' })
+    try {
+      const res = await fetch(`${link}${state.searchDrink}`)
+      const data = await res.json()
+      const { drinks } = data
+      if (drinks) {
+        const newDrinks = drinks.map((item) => {
+          const {
+            idDrink,
+            strDrink,
+            strDrinkThumb,
+            strCategory,
+            strAlcoholic,
+            strGlass,
+            strIngredient1: ig1,
+            strIngredient2: ig2,
+            strIngredient3: ig3,
+            strIngredient4: ig4,
+            strIngredient5: ig5,
+            strIngredient6: ig6,
+            strIngredient7: ig7,
+            strIngredient8: ig8,
+            strIngredient9: ig9,
+            strIngredient10: ig10,
+          } = item
+          return {
+            id: idDrink,
+            name: strDrink,
+            image: strDrinkThumb,
+            category: strCategory,
+            type: strAlcoholic,
+            glass: strGlass,
+            ingredients: [ig1, ig2, ig3, ig4, ig5, ig6, ig7, ig8, ig9, ig10],
+          }
+        })
+        dispatch({ type: 'SET_DRINKS', payload: newDrinks })
+      } else {
+        dispatch({ type: 'REMOVE_CONTENT' })
+      }
+      dispatch({ type: 'OFFLOAD' })
+    } catch (error) {
+      console.log(error)
+      dispatch({ type: 'ERROR' })
+    }
+  }, [state.searchDrink])
+
+  useEffect(() => {
+    fetchDrinks()
+  }, [fetchDrinks])
+
   const handleMeal = (val) => {
     dispatch({ type: 'SEARCH_MEAL', payload: val })
   }
@@ -71,8 +126,13 @@ const GenContext = ({ children }) => {
     dispatch({ type: 'SEARCH_DRINK', payload: val })
   }
 
+  const handleCart = (val) => {
+    dispatch({ type: 'CART', payload: val })
+  }
+
   return (
-    <contextAPI.Provider value={{ ...state, handleMeal, handleDrink }}>
+    <contextAPI.Provider
+      value={{ ...state, handleMeal, handleDrink, handleCart }}>
       {children}
     </contextAPI.Provider>
   )

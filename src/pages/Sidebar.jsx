@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { sidebar } from '../component/data'
 import { useNavigate } from 'react-router-dom'
+import { useGenContext } from '../context'
 
 const Sidebar = () => {
+  const { cartNumber } = useGenContext()
   const [view, setView] = useState(false)
   const navigate = useNavigate()
 
@@ -15,6 +17,13 @@ const Sidebar = () => {
         navigate(x)
     }
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (view === true) setView(false)
+    }, 5000)
+    return () => clearTimeout(timeout)
+  }, [view])
   return (
     <aside className='sidebar p-5 flex w-full gap-2 justify-between fixed bottom-0 bg-red-900 shadow-lg shadow-black text-red-100'>
       {sidebar.map((item) => {
@@ -30,7 +39,7 @@ const Sidebar = () => {
               {icon}
               <p
                 className={`${view} absolute -top-3 -right-5 bg-red-100 rounded-[50%] text-red-900 px-2`}>
-                0
+                {cartNumber}
               </p>
             </div>
             <p className='capitalize text-xs'>{title}</p>

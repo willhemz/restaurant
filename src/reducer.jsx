@@ -15,8 +15,18 @@ export const reducer = (state, action) => {
     case 'SET_CONTENT':
       state = { ...state, meals: action.payload }
       break
+    case 'SET_DRINKS':
+      state = { ...state, drinks: action.payload }
+      break
     case 'REMOVE_CONTENT':
       state = { ...state, meals: [] }
+      break
+    case 'CART':
+      state = {
+        ...state,
+        cart: [...state.cart, action.payload],
+        cartNumber: state.cart.length,
+      }
       break
     case 'ERROR':
       state = { ...state, loading: false, error: true }

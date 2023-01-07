@@ -3,11 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { hero } from '../component/data'
 import { useGenContext } from '../context'
 
-const Meal = () => {
-  const { meals, handleCart } = useGenContext()
+const Drink = () => {
+  const { drinks, handleCart } = useGenContext()
   const { id } = useParams()
   const navigate = useNavigate()
-  const { name, image, category, area, ingredients } = meals
+  const { name, image, category, type, glass, ingredients } = drinks
     .filter((item) => item.id === id)
     .reduce((item) => {
       return { ...item }
@@ -32,19 +32,24 @@ const Meal = () => {
           Category: <span className='font-bold'>{category}</span>
         </p>
         <p>
-          Peculiarity: <span className='font-bold'>{area}</span>
+          Type: <span className='font-bold'>{type}</span>
+        </p>
+        <p>
+          Glass: <span className='font-bold'>{glass}</span>
         </p>
         <p className='flex flex-wrap gap-1'>
           Ingredients:{' '}
-          {ingredients.map((item, index) => {
-            return (
-              <span
-                className='font-bold text-red-50 bg-red-500 p-1'
-                key={index}>
-                {item}
-              </span>
-            )
-          })}
+          {ingredients
+            .filter((item) => item !== null)
+            .map((item, index) => {
+              return (
+                <span
+                  className='font-bold text-red-50 bg-red-500 p-1'
+                  key={index}>
+                  {item}
+                </span>
+              )
+            })}
         </p>
         <button
           onClick={() => handleCart({ id, name, image, category })}
@@ -57,4 +62,4 @@ const Meal = () => {
   )
 }
 
-export default Meal
+export default Drink
