@@ -37,6 +37,10 @@ export const reducer = (state, action) => {
     case 'ERROR':
       state = { ...state, loading: false, error: true }
       break
+    case 'TOTAL':
+      const total = state.cart.map((item) => item.id).reduce((a, b) => a + b)
+      state = { ...state, price: total }
+      break
 
     default:
       state = { ...state }

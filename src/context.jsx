@@ -15,6 +15,7 @@ const defaultState = {
   meals: [],
   cart: [],
   cartNumber: 0,
+  price: 0,
 }
 const GenContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState)
@@ -133,9 +134,14 @@ const GenContext = ({ children }) => {
     dispatch({ type: 'CART', payload: val })
   }
 
+  const handleTotal = useCallback(() => {
+    state.cart.length < 1 ? (state.price = 0) : dispatch({ type: 'TOTAL' })
+  }, [state])
+
   useEffect(() => {
     dispatch({ type: 'CART_NUMBER' })
-  }, [state.cart])
+    handleTotal()
+  }, [state.cart, handleTotal])
 
   return (
     <contextAPI.Provider
