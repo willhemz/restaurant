@@ -112,7 +112,7 @@ const Category = () => {
                     return (
                       <div
                         key={id}
-                        className='meal-card w-[90%] shadow-lg shadow-red-100 h-[400px]'>
+                        className='meal-card w-[90%] shadow-lg shadow-red-100 h-[450px]'>
                         <img className='h-3/5 w-full' src={image} alt={name} />
                         <div className='p-3 flex flex-col gap-2'>
                           <h2 className='text-xl font-bold uppercase'>
@@ -122,6 +122,7 @@ const Category = () => {
                           </h2>
                           <p>Category: {category}</p>
                           <p>Type: {type}</p>
+                          <p>Glass: {glass}</p>
                           <Link
                             className='btnLong mt-3'
                             to={`/category/drink/${id}`}>
