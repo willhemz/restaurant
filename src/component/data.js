@@ -7,11 +7,19 @@ import { CgMenuRight } from 'react-icons/cg'
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
 import { BiCategoryAlt } from 'react-icons/bi'
-import { BsCart2 } from 'react-icons/bs'
+import { BsCart2, BsArrowLeft } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdOutlineAccountCircle } from 'react-icons/md'
 
-export const hero = { logo, food, order, plates, menu, bar: <CgMenuRight /> }
+export const hero = {
+  logo,
+  food,
+  order,
+  plates,
+  menu,
+  bar: <CgMenuRight />,
+  direction: <BsArrowLeft />,
+}
 
 export const socials = [
   {
