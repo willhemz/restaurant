@@ -127,8 +127,15 @@ const GenContext = ({ children }) => {
   }
 
   const handleCart = (val) => {
+    if (state.cart.some((item) => item.name === val.name)) {
+      return state
+    }
     dispatch({ type: 'CART', payload: val })
   }
+
+  useEffect(() => {
+    dispatch({ type: 'CART_NUMBER' })
+  }, [state.cart])
 
   return (
     <contextAPI.Provider

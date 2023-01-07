@@ -25,6 +25,12 @@ export const reducer = (state, action) => {
       state = {
         ...state,
         cart: [...state.cart, action.payload],
+      }
+      console.log(state.cart)
+      break
+    case 'CART_NUMBER':
+      state = {
+        ...state,
         cartNumber: state.cart.length,
       }
       break
