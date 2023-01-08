@@ -16,6 +16,7 @@ const defaultState = {
   cart: [],
   cartNumber: 0,
   price: 0,
+  login: { id: new Date().getDate().toString(), email: '', password: '' },
 }
 const GenContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState)
