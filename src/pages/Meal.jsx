@@ -13,6 +13,10 @@ const Meal = () => {
       return { ...item }
     })
 
+  if (meals === []) {
+    return navigate('/category/meal')
+  }
+
   return (
     <main className='meal w-full mt-20 mb-40 p-5'>
       <button className='text-2xl mb-3 btn' onClick={() => navigate(-1)}>

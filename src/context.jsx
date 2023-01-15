@@ -135,14 +135,14 @@ const GenContext = ({ children }) => {
     dispatch({ type: 'CART', payload: val })
   }
 
-  const handleTotal = useCallback(() => {
+  const handleTotal = () => {
     state.cart.length < 1 ? (state.price = 0) : dispatch({ type: 'TOTAL' })
-  }, [state])
+  }
 
   useEffect(() => {
     dispatch({ type: 'CART_NUMBER' })
     handleTotal()
-  }, [state.cart, handleTotal])
+  }, [state.cart])
 
   return (
     <contextAPI.Provider
