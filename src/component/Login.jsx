@@ -4,7 +4,7 @@ import { hero, term } from '../component/data'
 
 const Login = () => {
   return (
-    <main className='w-full mt-20 mb-40 bg-red-50 '>
+    <main className='w-full mt-20 mb-40 pt-1 bg-red-50 '>
       <form className='form-control m-5 mb-10 p-5 shadow-md shadow-gray-200 bg-red-100 rounded-md text-center'>
         <h3 className='font-bold mb-3'>Login to your account</h3>
         <input
@@ -29,16 +29,18 @@ const Login = () => {
           <Link to='/forgot-password'>Forgot Password?</Link>
         </article>
         <button className='user-btn'>Login</button>
-        <article className='mt-10'>
-          <code>Don't have an account?</code>
-          <Link to='/register'>Register Now</Link>
+        <article className='mt-10 flex flex-col'>
+          <code className='text-sm'>Don't have an account?</code>
+          <Link to='/register' className='text-xs btn'>
+            Register Now
+          </Link>
         </article>
       </form>
       <footer className='bg-red-100 flex flex-col gap-8 items-center p-5'>
         {term.map((item) => {
           return (
             <article
-              className='flex flex-col items-center justify-center gap-1'
+              className='flex flex-col items-center justify-center gap-1 capitalize'
               key={item.id}>
               <span className='text-3xl'>{item.icon}</span>
               <span>{item.name}</span>
