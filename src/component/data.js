@@ -6,10 +6,39 @@ import plates from '../asset/plates.jpg'
 import { CgMenuRight } from 'react-icons/cg'
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
-import { BiCategoryAlt } from 'react-icons/bi'
+import { BiCategoryAlt, BiShow } from 'react-icons/bi'
 import { BsCart2, BsArrowLeft } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
-import { MdOutlineAccountCircle } from 'react-icons/md'
+import {
+  MdOutlineAccountCircle,
+  MdOutlineKeyboardReturn,
+  MdOutlinePrivacyTip,
+} from 'react-icons/md'
+
+import { GrNotes, GrSupport } from 'react-icons/gr'
+
+export const term = [
+  {
+    id: new Date().getTime().toString(),
+    name: 'terms & conditions',
+    icon: <GrNotes />,
+  },
+  {
+    id: new Date().getTime().toString(),
+    name: 'return policy',
+    icon: <MdOutlineKeyboardReturn />,
+  },
+  {
+    id: new Date().getTime().toString(),
+    name: 'support policy',
+    icon: <GrSupport />,
+  },
+  {
+    id: new Date().getTime().toString(),
+    name: 'privacy policy',
+    icon: <MdOutlinePrivacyTip />,
+  },
+]
 
 export const hero = {
   logo,
@@ -19,6 +48,7 @@ export const hero = {
   menu,
   bar: <CgMenuRight />,
   direction: <BsArrowLeft />,
+  eye: <BiShow />,
 }
 
 export const socials = [

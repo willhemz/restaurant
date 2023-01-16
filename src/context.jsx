@@ -133,15 +133,11 @@ const GenContext = ({ children }) => {
       return state
     }
     dispatch({ type: 'CART', payload: val })
-  }
-
-  const handleTotal = () => {
     state.cart.length < 1 ? (state.price = 0) : dispatch({ type: 'TOTAL' })
   }
 
   useEffect(() => {
     dispatch({ type: 'CART_NUMBER' })
-    handleTotal()
   }, [state.cart])
 
   return (
