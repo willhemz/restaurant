@@ -113,13 +113,8 @@
   }
 
   .hero-image {
-    @apply h-[300px] overflow-hidden relative p-5 flex items-center
+    @apply h-[300px] w-full overflow-hidden relative p-5 flex items-center justify-center sm:p-10 
   }
-
-  .home-img {
-    @apply absolute w-4/5 h-full top-24 left-[calc(50%-20px)] overflow-hidden -skew-y-12
-  }
-
 
   /* Footer */
   .footer {

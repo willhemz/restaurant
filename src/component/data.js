@@ -19,22 +19,22 @@ import { GrNotes, GrSupport } from 'react-icons/gr'
 
 export const term = [
   {
-    id: new Date().getTime().toString(),
+    id: 1,
     name: 'terms & conditions',
     icon: <GrNotes />,
   },
   {
-    id: new Date().getTime().toString(),
+    id: 2,
     name: 'return policy',
     icon: <MdOutlineKeyboardReturn />,
   },
   {
-    id: new Date().getTime().toString(),
+    id: 3,
     name: 'support policy',
     icon: <GrSupport />,
   },
   {
-    id: new Date().getTime().toString(),
+    id: 4,
     name: 'privacy policy',
     icon: <MdOutlinePrivacyTip />,
   },
