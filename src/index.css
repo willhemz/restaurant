@@ -108,12 +108,24 @@
     filter: opacity(60%);
   }
 
+  @media screen and (min-width: 640px) {
+    .home::before {
+      height: 400px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .home::before {
+      height: 500px;
+    }
+  }
+
   .home {
     @apply relative w-full h-auto overflow-hidden
   }
 
   .hero-image {
-    @apply h-[300px] w-full overflow-hidden relative p-5 flex items-center justify-center sm:p-10 
+    @apply h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden relative p-5 flex items-center justify-center sm:p-10 
   }
 
   /* Footer */
@@ -171,5 +183,10 @@
   }
 
   /* Category */
-  
+  .category {
+    @apply w-full
+  }
+  .category article.footer {
+    @apply grid md:grid-cols-2 w-full place-content-center
+  }
 }

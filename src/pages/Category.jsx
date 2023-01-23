@@ -46,7 +46,7 @@ const Category = () => {
             {loading ? (
               <Loading />
             ) : (
-              <article className='footer mb-52 flex flex-col gap-10'>
+              <article className='footer mb-52'>
                 {meals.length < 1 ? (
                   <div className='reply h-44 flex justify-center items-center w-full'>
                     <p>No meals match your search criteria...</p>
@@ -57,8 +57,12 @@ const Category = () => {
                     return (
                       <div
                         key={id}
-                        className='meal-card w-[90%] shadow-lg shadow-red-100 h-[400px]'>
-                        <img className='h-3/5 w-full' src={image} alt={name} />
+                        className='meal-card w-full shadow-lg shadow-red-100 h-[400px]'>
+                        <img
+                          className='h-3/5 w-full object-cover'
+                          src={image}
+                          alt={name}
+                        />
                         <div className='p-3 flex flex-col gap-2'>
                           <h2 className='text-xl font-bold uppercase'>
                             {name.length > 24
@@ -101,7 +105,7 @@ const Category = () => {
             {loading ? (
               <Loading />
             ) : (
-              <article className='footer mb-52 flex flex-col gap-10'>
+              <article className='footer mb-52'>
                 {meals.length < 1 ? (
                   <div className='reply h-44 flex justify-center items-center w-full'>
                     <p>No drinks match your search criteria...</p>
@@ -112,8 +116,12 @@ const Category = () => {
                     return (
                       <div
                         key={id}
-                        className='meal-card w-[90%] shadow-lg shadow-red-100 h-[450px]'>
-                        <img className='h-3/5 w-full' src={image} alt={name} />
+                        className='meal-card w-full shadow-lg shadow-red-100 h-[450px]'>
+                        <img
+                          className='h-3/5 w-full object-cover'
+                          src={image}
+                          alt={name}
+                        />
                         <div className='p-3 flex flex-col gap-2'>
                           <h2 className='text-xl font-bold uppercase'>
                             {name.length > 24
