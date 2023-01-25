@@ -13,10 +13,10 @@ const Cart = () => {
   }
   return (
     <main className='cart mt-24 mb-40 w-full p-5'>
-      <h2 className=' w-max font-pacifico text-3xl text-center mb-5 text-red-900 ml-[50%] -translate-x-1/2'>
+      <h2 className=' w-max font-pacifico text-3xl text-center mb-8 md:mb-10 text-red-900 ml-[50%] -translate-x-1/2'>
         Your Cart
       </h2>
-      <section className='cart-header grid gap-3 w-full'>
+      <section className='cart-header grid gap-5 w-full sm:w-3/5 lg:w-2/5 ml-[50%] -translate-x-1/2'>
         {cart.map((item) => {
           const { id, name, image, category } = item
           return (
@@ -31,7 +31,7 @@ const Cart = () => {
           )
         })}
       </section>
-      <section className='cart-footer flex justify-between border-t-2 border-red-500 mt-10 pt-2 px-2'>
+      <section className='cart-footer flex justify-between border-t-2 border-red-500 mt-10 pt-2 px-2 w-full sm:w-3/5 lg:w-2/5 ml-[50%] -translate-x-1/2'>
         <p>Total</p>
         <p>#{price}</p>
       </section>

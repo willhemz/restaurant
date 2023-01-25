@@ -24,7 +24,7 @@ const Category = () => {
 
   return (
     <>
-      <main className='category'>
+      <main className='category w-screen'>
         {id === 'meal' ? (
           <>
             <form

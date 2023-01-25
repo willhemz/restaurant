@@ -89,7 +89,7 @@
   }
 
   .search-btn {
-    @apply bg-red-100 rounded-md p-2 text-red-900 w-full
+    @apply bg-red-100 rounded-l-md p-2 text-red-900 w-full
   }
 
   /* Home */
@@ -183,10 +183,10 @@
   }
 
   /* Category */
-  .category {
-    @apply w-full
-  }
+  /* .category {
+    @apply
+  } */
   .category article.footer {
-    @apply grid sm:grid-cols-2 w-full place-content-center place-items-center p-5 gap-10 sm:gap-x-5 lg:grid-cols-3 lg:p-10
+    @apply w-full grid sm:grid-cols-2 place-items-center p-8 gap-10 sm:gap-x-5 lg:grid-cols-3 lg:p-10 xl:grid-cols-4
   }
 }

@@ -10,14 +10,18 @@ const Navbar = () => {
           <Link to='/'>
             <img className='nav-logo' src={hero.logo} alt='dolapot' />
           </Link>
-          <input
-            className='search-btn'
-            type='search'
-            name=''
-            id=''
-            placeholder='search...'
-          />
-          {/* <button className='btn'>{hero.bar}</button> */}
+          <div className='flex w-11/12'>
+            <input
+              className='search-btn'
+              type='search'
+              name=''
+              id=''
+              placeholder='search...'
+            />
+            <button className='btn text-2xl bg-red-700 text-white rounded-r-md p-2'>
+              {hero.search}
+            </button>
+          </div>
         </div>
       </nav>
     </>

@@ -6,7 +6,7 @@ import plates from '../asset/plates.jpg'
 import { CgMenuRight } from 'react-icons/cg'
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
-import { BiCategoryAlt, BiShow } from 'react-icons/bi'
+import { BiCategoryAlt, BiShow, BiSearch } from 'react-icons/bi'
 import { BsCart2, BsArrowLeft } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import {
@@ -49,6 +49,7 @@ export const hero = {
   bar: <CgMenuRight />,
   direction: <BsArrowLeft />,
   eye: <BiShow />,
+  search: <BiSearch />,
 }
 
 export const socials = [

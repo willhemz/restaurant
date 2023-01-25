@@ -5,14 +5,14 @@ import { hero, term } from '../component/data'
 const Login = () => {
   return (
     <main className='w-full mt-20 mb-40 pt-1 bg-red-50 '>
-      <form className='form-control m-5 mb-10 p-5 shadow-md shadow-gray-200 bg-red-100 rounded-md text-center'>
+      <form className='form-control m-5 mb-10 p-5 lg:p-10 shadow-md shadow-gray-200 bg-red-100 rounded-md text-center sm:w-1/2 xl:w-2/5 sm:ml-[50%] sm:-translate-x-1/2'>
         <h3 className='font-bold mb-3'>Login to your account</h3>
         <input
           className='bg-transparent border mb-3 p-2 w-full border-b-red-600'
           type='email'
           placeholder='Email'
         />
-        <article className='flex items-center border border-b-red-600 p-2 w-full mb-3'>
+        <article className='flex items-center justify-between border border-b-red-600 p-2 w-full mb-3'>
           <input
             className='bg-transparent'
             type='Password'
@@ -28,7 +28,7 @@ const Login = () => {
           </div>
           <Link to='/forgot-password'>Forgot Password?</Link>
         </article>
-        <button className='user-btn'>Login</button>
+        <button className='user-btn lg:mt-5'>Login</button>
         <article className='mt-10 flex flex-col'>
           <code className='text-sm'>Don't have an account?</code>
           <Link to='/register' className='text-xs btn'>
@@ -36,7 +36,7 @@ const Login = () => {
           </Link>
         </article>
       </form>
-      <footer className='bg-red-100 flex flex-col gap-8 items-center p-5'>
+      <footer className='bg-red-100 flex flex-col gap-8 items-center p-5 md:p-10'>
         {term.map((item) => {
           return (
             <article

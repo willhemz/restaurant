@@ -5,7 +5,7 @@ import { hero, term } from '../component/data'
 const Register = () => {
   return (
     <main className='w-full mt-20 mb-40 pt-1 bg-red-50 '>
-      <form className='form-control m-5 mb-10 p-5 shadow-md shadow-gray-200 bg-red-100 rounded-md text-center'>
+      <form className='form-control m-5 mb-10 p-5 lg:p-10 shadow-md shadow-gray-200 bg-red-100 rounded-md text-center sm:w-1/2 xl:w-2/5 sm:ml-[50%] sm:-translate-x-1/2'>
         <h3 className='font-bold mb-3'>Create an account</h3>
         <input
           className='bg-transparent border mb-3 p-2 w-full border-b-red-600'
@@ -17,7 +17,7 @@ const Register = () => {
           type='email'
           placeholder='Email'
         />
-        <article className='flex items-center border border-b-red-600 p-2 w-full mb-3'>
+        <article className='flex items-center justify-between border border-b-red-600 p-2 w-full mb-3'>
           <input
             className='bg-transparent'
             type='Password'
@@ -26,7 +26,7 @@ const Register = () => {
           />
           {hero.eye}
         </article>
-        <article className='flex items-center border border-b-red-600 p-2 w-full mb-3'>
+        <article className='flex items-center justify-between border border-b-red-600 p-2 w-full mb-3'>
           <input
             className='bg-transparent'
             type='Password'
@@ -35,13 +35,13 @@ const Register = () => {
           />
           {hero.eye}
         </article>
-        <article className='flex w-full text-sm justify-between items-center mb-5'>
+        <article className='flex w-full text-sm gap-3 items-center mb-5'>
           <input type='checkbox' name='' id='remember' />
-          <label className='text-gray-500 ' htmlFor='remember'>
+          <label className='text-gray-500 text-left' htmlFor='remember'>
             By signing up you agree to our terms and conditions.
           </label>
         </article>
-        <button className='user-btn'>Create Account</button>
+        <button className='user-btn lg:mt-5'>Create Account</button>
         <article className='mt-10 flex flex-col'>
           <code className='text-sm'>Already have an account?</code>
           <Link to='/login' className='text-xs btn'>
@@ -49,7 +49,7 @@ const Register = () => {
           </Link>
         </article>
       </form>
-      <footer className='bg-red-100 flex flex-col gap-8 items-center p-5'>
+      <footer className='bg-red-100 flex flex-col gap-8 items-center p-5 md:p-10'>
         {term.map((item) => {
           return (
             <article
