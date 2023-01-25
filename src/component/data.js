@@ -6,16 +6,17 @@ import plates from '../asset/plates.jpg'
 import { CgMenuRight } from 'react-icons/cg'
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
-import { BiCategoryAlt, BiShow, BiSearch } from 'react-icons/bi'
+import { BiCategoryAlt, BiShow, BiSearch, BiLike } from 'react-icons/bi'
 import { BsCart2, BsArrowLeft } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import {
   MdOutlineAccountCircle,
   MdOutlineKeyboardReturn,
   MdOutlinePrivacyTip,
+  MdOutlineEmojiFoodBeverage,
 } from 'react-icons/md'
-
 import { GrNotes, GrSupport } from 'react-icons/gr'
+import { GiHotMeal } from 'react-icons/gi'
 
 export const term = [
   {
@@ -73,18 +74,22 @@ export const sidebar = [
     id: 2,
     title: 'category',
     icon: <BiCategoryAlt />,
-    items: ['meal', 'drink'],
+    items: [
+      { id: 1, name: 'meal', icon: <GiHotMeal /> },
+      { id: 2, name: 'drink', icon: <MdOutlineEmojiFoodBeverage /> },
+    ],
     path: '/category',
   },
-  { id: 3, title: 'cart', icon: <BsCart2 />, path: '/cart' },
+  { id: 3, title: 'wishlist', icon: <BiLike />, path: '/wishlist' },
+  { id: 4, title: 'cart', icon: <BsCart2 />, path: '/cart' },
   {
-    id: 4,
+    id: 5,
     title: 'notification',
     icon: <IoMdNotificationsOutline />,
     path: '/notification',
   },
   {
-    id: 5,
+    id: 6,
     title: 'account',
     icon: <MdOutlineAccountCircle />,
     path: '/account',

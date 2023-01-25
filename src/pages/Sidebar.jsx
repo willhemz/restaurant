@@ -36,7 +36,7 @@ const Sidebar = () => {
     return () => clearTimeout(timeout)
   }, [view])
   return (
-    <aside className='sidebar p-5 sm:px-10 flex w-full gap-2 justify-between fixed bottom-0 bg-red-900 shadow-lg shadow-black text-red-100'>
+    <aside className='sidebar lg:top-3 lg:bg-red-100 lg:bg-opacity-70 lg:rounded-full lg:right-10 lg:p-4 lg:px-8 lg:bottom-auto lg:w-2/5 p-5 sm:px-10 flex w-full gap-2 justify-between fixed bottom-0 bg-red-900 shadow-lg shadow-black text-red-100 lg:text-red-900 lg:shadow-none'>
       {sidebar.map((item) => {
         const { id, icon, path, title } = item
         let view = 'hidden'
@@ -45,7 +45,9 @@ const Sidebar = () => {
           <button
             onClick={() => checkCase(title, path)}
             key={id}
-            className='aside--item flex flex-col items-center'>
+            className={`aside--item flex flex-col items-center ${
+              title.toLowerCase() === 'wishlist' && 'hidden lg:flex'
+            } ${title.toLowerCase() === 'category' && 'lg:hidden'}`}>
             <div className='text-2xl relative'>
               {icon}
               <p
@@ -60,20 +62,20 @@ const Sidebar = () => {
       {view && (
         <article
           ref={catContainer}
-          className={`flowbar absolute -top-10 -translate-x-1/2 p-3 bg-red-500 rounded-lg text-red-200 flex gap-3`}>
+          className={`flowbar absolute -top-10 -translate-x-1/2 p-3 bg-red-500 rounded-lg text-red-200 flex gap-5`}>
           {sidebar
             .filter((item) => item.title === 'category')
             .map((item) => {
               return item.items.map((item, index) => {
                 return (
                   <button
-                    className='hover:underline transition-all duration-300'
+                    className='hover:underline flex items-center gap-1 transition-all duration-300'
                     onClick={() => {
-                      navigate(`category/${item}`)
+                      navigate(`category/${item.name}`)
                       setView(false)
                     }}
                     key={index}>
-                    {item}
+                    {item.icon} {item.name}
                   </button>
                 )
               })

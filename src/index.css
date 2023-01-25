@@ -69,7 +69,7 @@
   }
   /* Header */
   .nav-container {
-    @apply flex justify-center items-center h-[70px] w-full bg-transparent p-3 fixed top-3 z-10
+    @apply flex justify-center items-center h-[70px] w-full lg:w-[55%] bg-transparent p-3 fixed top-3 z-10
   }
 
   .nav-header {
@@ -125,7 +125,7 @@
   }
 
   .hero-image {
-    @apply h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden relative p-5 flex items-center justify-center sm:p-10 
+    @apply h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden relative p-5 flex items-center justify-center gap-5 sm:p-10 
   }
 
   /* Footer */
