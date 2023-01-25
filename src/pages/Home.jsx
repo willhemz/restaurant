@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { hero, sidebar } from '../component/data'
+import { hero, sidebar, homeRoll } from '../component/data'
 
 const Home = () => {
   const navigate = useNavigate()
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    if (index > homeRoll.length - 1) setIndex(0)
+    if (index < 0) setIndex(homeRoll.length - 1)
+  }, [index])
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIndex(index + 1)
+    }, 5000)
+    return () => clearTimeout(timeout)
+  }, [index])
+
   return (
     <>
       <main className='home'>
@@ -31,6 +45,28 @@ const Home = () => {
                 </article>
               )
             })}
+          <article className='hidden lg:block relative w-2/3 h-[70%] mt-16 overflow-hidden'>
+            {homeRoll.map((item, itemIndex) => {
+              let position = 'nextSlide'
+              if (itemIndex === index) position = 'activeSlide'
+              if (
+                itemIndex === index - 1 ||
+                (index === 0 && itemIndex === homeRoll.length - 1)
+              )
+                position = 'lastSlide'
+              return (
+                <div
+                  className={`homeRoll absolute top-0 left-0 w-full h-full ${position}`}
+                  key={item.id}>
+                  <img
+                    className='object-cover h-full w-full'
+                    src={item.icon}
+                    alt='rice'
+                  />
+                </div>
+              )
+            })}
+          </article>
           <p className='flex flex-col items-center w-fit mt-16 text-7xl font-bold text-red-700 sm:text-[90px]'>
             <span className='textLight'>Dola</span>
             <span className='textLight'>pot</span>

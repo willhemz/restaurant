@@ -120,12 +120,34 @@
     }
   }
 
+  @media screen and (min-width: 1280px) {
+    .home::before {
+      height: 800px;
+    }
+  }
+
   .home {
     @apply relative w-full h-auto overflow-hidden
   }
 
   .hero-image {
-    @apply h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden relative p-5 flex items-center justify-center gap-5 sm:p-10 
+    @apply h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[800px] w-full overflow-hidden relative p-5 flex items-center justify-center gap-5 sm:p-10 
+  }
+
+  .homeRoll {
+    @apply transition-all duration-1000 opacity-0
+  }
+
+  .homeRoll.activeSlide {
+    @apply translate-x-0 opacity-100
+  }
+
+  .homeRoll.lastSlide {
+    @apply -translate-x-full opacity-0
+  }
+
+  .homeRoll.nextSlide {
+    @apply translate-x-full opacity-0
   }
 
   /* Footer */

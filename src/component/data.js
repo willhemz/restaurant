@@ -3,6 +3,9 @@ import food from '../asset/food.jpg'
 import order from '../asset/order.jpg'
 import menu from '../asset/menu.jpg'
 import plates from '../asset/plates.jpg'
+import kevinRice from '../asset/kevinRice.jpg'
+import judeRice from '../asset/judeRice.jpg'
+import rakhmatRice from '../asset/rakhmatRice.jpg'
 import { CgMenuRight } from 'react-icons/cg'
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
@@ -17,6 +20,21 @@ import {
 } from 'react-icons/md'
 import { GrNotes, GrSupport } from 'react-icons/gr'
 import { GiHotMeal } from 'react-icons/gi'
+
+export const homeRoll = [
+  {
+    id: 1,
+    icon: kevinRice,
+  },
+  {
+    id: 2,
+    icon: judeRice,
+  },
+  {
+    id: 3,
+    icon: rakhmatRice,
+  },
+]
 
 export const term = [
   {
