@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useReducer } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { reducer } from './reducer'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
@@ -6,24 +12,30 @@ const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 const link = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 
 const contextAPI = React.createContext()
-const defaultState = {
-  loading: true,
-  isError: false,
-  searchMeal: 'a',
-  searchDrink: 'a',
-  drinks: [],
-  meals: [],
-  cart: [],
-  cartNumber: 0,
-  price: 0,
-  login: {
-    id: new Date().getDate().toString(),
-    email: '',
-    password: '',
-    phoneNumber: '',
-    fullName: '',
-  },
+const getLocalStorage = () => {
+  let state = localStorage.getItem('state')
+  if (state) {
+    return (state = JSON.parse(state))
+  } else {
+    return {
+      loading: true,
+      isError: false,
+      searchMeal: 'a',
+      searchDrink: 'a',
+      drinks: [],
+      meals: [],
+      cart: [],
+      wishlist: [],
+      order: [],
+      cartNumber: 0,
+      wishNumber: 0,
+      orderNumber: 0,
+      price: 0,
+      login: null,
+    }
+  }
 }
+const defaultState = getLocalStorage()
 const GenContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
@@ -146,9 +158,31 @@ const GenContext = ({ children }) => {
     dispatch({ type: 'CART_NUMBER' })
   }, [state.cart])
 
+  const handleData = (data) => {
+    dispatch({ type: 'REGISTER', payload: data })
+  }
+
+  useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state))
+  }, [state])
+
+  const [show, setShow] = useState(false)
+
+  const openView = () => setShow(true)
+  const closeView = () => setShow(false)
+
   return (
     <contextAPI.Provider
-      value={{ ...state, handleMeal, handleDrink, handleCart }}>
+      value={{
+        ...state,
+        handleMeal,
+        handleDrink,
+        handleCart,
+        handleData,
+        show,
+        openView,
+        closeView,
+      }}>
       {children}
     </contextAPI.Provider>
   )

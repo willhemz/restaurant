@@ -6,10 +6,23 @@ import plates from '../asset/plates.jpg'
 import kevinRice from '../asset/kevinRice.jpg'
 import judeRice from '../asset/judeRice.jpg'
 import rakhmatRice from '../asset/rakhmatRice.jpg'
+import avatar from '../asset/avatar.jpg'
+import meter from '../asset/meter.png'
 import { CgMenuRight } from 'react-icons/cg'
-import { FaTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
-import { AiOutlineGithub, AiOutlineHome } from 'react-icons/ai'
-import { BiCategoryAlt, BiShow, BiSearch, BiLike } from 'react-icons/bi'
+import { FaTwitter, FaLinkedinIn, FaFacebookF, FaWallet } from 'react-icons/fa'
+import { FcMoneyTransfer } from 'react-icons/fc'
+import {
+  AiOutlineGithub,
+  AiOutlineHome,
+  AiOutlineDownload,
+} from 'react-icons/ai'
+import {
+  BiCategoryAlt,
+  BiShow,
+  BiSearch,
+  BiRewind,
+  BiLike,
+} from 'react-icons/bi'
 import { BsCart2, BsArrowLeft } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import {
@@ -17,6 +30,8 @@ import {
   MdOutlineKeyboardReturn,
   MdOutlinePrivacyTip,
   MdOutlineEmojiFoodBeverage,
+  MdSpaceDashboard,
+  MdHistoryEdu,
 } from 'react-icons/md'
 import { GrNotes, GrSupport } from 'react-icons/gr'
 import { GiHotMeal } from 'react-icons/gi'
@@ -64,7 +79,9 @@ export const hero = {
   food,
   order,
   plates,
+  meter,
   menu,
+  avatar,
   bar: <CgMenuRight />,
   direction: <BsArrowLeft />,
   eye: <BiShow />,
@@ -112,4 +129,39 @@ export const sidebar = [
     icon: <MdOutlineAccountCircle />,
     path: '/account',
   },
+]
+
+export const account = [
+  {
+    id: 1,
+    icon: <MdSpaceDashboard />,
+    name: 'dashboard',
+    path: '/account/dashboard',
+  },
+  {
+    id: 2,
+    icon: <MdHistoryEdu />,
+    name: 'purchase history',
+    path: '/account/purchase-history',
+  },
+  {
+    id: 3,
+    icon: <AiOutlineDownload />,
+    name: 'downloads',
+    path: '/account/downloads',
+  },
+  {
+    id: 4,
+    icon: <BiRewind />,
+    name: 'Sent refund request',
+    path: '/account/refund',
+  },
+  { id: 5, icon: <BiLike />, name: 'wishlist', path: '/account/wishlist' },
+  {
+    id: 6,
+    icon: <FcMoneyTransfer />,
+    name: 'withdraw money',
+    path: '/account/withdrawal',
+  },
+  { id: 7, icon: <FaWallet />, name: 'My wallet', path: '/account/wallet' },
 ]

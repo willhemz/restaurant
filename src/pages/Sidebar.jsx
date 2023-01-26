@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGenContext } from '../context'
 
 const Sidebar = () => {
-  const { cartNumber } = useGenContext()
+  const { cartNumber, openView } = useGenContext()
   const [view, setView] = useState(false)
   const navigate = useNavigate()
 
@@ -14,6 +14,10 @@ const Sidebar = () => {
     switch (val) {
       case 'category':
         setView(!view)
+        break
+      case 'account':
+        navigate(x)
+        openView()
         break
       default:
         navigate(x)

@@ -42,6 +42,9 @@ export const reducer = (state, action) => {
         .reduce((a, b) => parseInt(a) + parseInt(b), 0)
       state = { ...state, price: total }
       break
+    case 'REGISTER':
+      state = { ...state, login: action.payload }
+      break
 
     default:
       state = { ...state }
