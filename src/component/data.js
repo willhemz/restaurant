@@ -23,8 +23,9 @@ import {
   BiRewind,
   BiLike,
 } from 'react-icons/bi'
-import { BsCart2, BsArrowLeft } from 'react-icons/bs'
+import { BsCart2, BsArrowLeft, BsFillPersonFill } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
+import { IoClose } from 'react-icons/io5'
 import {
   MdOutlineAccountCircle,
   MdOutlineKeyboardReturn,
@@ -86,6 +87,7 @@ export const hero = {
   direction: <BsArrowLeft />,
   eye: <BiShow />,
   search: <BiSearch />,
+  close: <IoClose />,
 }
 
 export const socials = [
@@ -164,4 +166,10 @@ export const account = [
     path: '/account/withdrawal',
   },
   { id: 7, icon: <FaWallet />, name: 'My wallet', path: '/account/wallet' },
+  {
+    id: 8,
+    icon: <BsFillPersonFill />,
+    name: 'Manage profile',
+    path: '/account/profile',
+  },
 ]

@@ -15,7 +15,7 @@ const contextAPI = React.createContext()
 const getLocalStorage = () => {
   let state = localStorage.getItem('state')
   if (state) {
-    return (state = JSON.parse(state))
+    return (state = JSON.parse(localStorage.getItem('state')))
   } else {
     return {
       loading: true,
@@ -32,6 +32,7 @@ const getLocalStorage = () => {
       orderNumber: 0,
       price: 0,
       login: null,
+      userError: false,
     }
   }
 }
@@ -146,20 +147,25 @@ const GenContext = ({ children }) => {
     dispatch({ type: 'SEARCH_DRINK', payload: val })
   }
 
-  const handleCart = (val) => {
+  const handleCart = (type, val) => {
     if (state.cart.some((item) => item.name === val.name)) {
       return state
     }
-    dispatch({ type: 'CART', payload: val })
+    dispatch({ type: 'CART', payload: { type, val } })
     state.cart.length < 1 ? (state.price = 0) : dispatch({ type: 'TOTAL' })
   }
 
   useEffect(() => {
     dispatch({ type: 'CART_NUMBER' })
-  }, [state.cart])
+    dispatch({ type: 'WISH_NUMBER' })
+  }, [state.cart, state.wishlist])
 
   const handleData = (data) => {
     dispatch({ type: 'REGISTER', payload: data })
+  }
+
+  const removeFromWishList = (id) => {
+    dispatch({ type: 'REMOVE_WISHLIST', payload: id })
   }
 
   useEffect(() => {
@@ -171,6 +177,36 @@ const GenContext = ({ children }) => {
   const openView = () => setShow(true)
   const closeView = () => setShow(false)
 
+  const logOut = () => {
+    localStorage.setItem('detail', JSON.stringify(state))
+    dispatch({ type: 'LOGOUT' })
+  }
+
+  const logAccount = (val) => {
+    let detail = localStorage.getItem('detail')
+    if (detail) {
+      detail = JSON.parse(localStorage.getItem('data'))
+      if (
+        detail.login.email === val.email &&
+        detail.login.password === val.password
+      ) {
+        dispatch({ type: 'LOGIN', payload: detail })
+        console.log(detail)
+      } else dispatch({ type: 'USER_ERROR' })
+    }
+
+    if (!detail) dispatch({ type: 'USER_ERROR' })
+  }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (state.userError) {
+        dispatch({ type: 'OFF_ERROR' })
+      }
+    }, 5000)
+    return () => clearTimeout(timeout)
+  }, [state.userError])
+
   return (
     <contextAPI.Provider
       value={{
@@ -179,9 +215,12 @@ const GenContext = ({ children }) => {
         handleDrink,
         handleCart,
         handleData,
+        logOut,
         show,
+        logAccount,
         openView,
         closeView,
+        removeFromWishList,
       }}>
       {children}
     </contextAPI.Provider>

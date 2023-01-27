@@ -22,16 +22,31 @@ export const reducer = (state, action) => {
       state = { ...state, meals: [] }
       break
     case 'CART':
-      state = {
-        ...state,
-        cart: [...state.cart, action.payload],
-      }
+      action.payload.type === 'cart'
+        ? (state = {
+            ...state,
+            cart: [...state.cart, action.payload.val],
+          })
+        : (state = {
+            ...state,
+            wishlist: [...state.wishlist, action.payload.val],
+          })
       break
     case 'CART_NUMBER':
       state = {
         ...state,
         cartNumber: state.cart.length,
       }
+      break
+    case 'WISH_NUMBER':
+      state = {
+        ...state,
+        wishNumber: state.wishlist.length,
+      }
+      break
+    case 'REMOVE_WISHLIST':
+      let newList = state.wishlist.filter((item) => item.id !== action.payload)
+      state = { ...state, wishlist: newList }
       break
     case 'ERROR':
       state = { ...state, loading: false, error: true }
@@ -44,6 +59,18 @@ export const reducer = (state, action) => {
       break
     case 'REGISTER':
       state = { ...state, login: action.payload }
+      break
+    case 'LOGIN':
+      state = action.payload
+      break
+    case 'LOGOUT':
+      state = { ...state, login: null }
+      break
+    case 'USER_ERROR':
+      state = { ...state, userError: true }
+      break
+    case 'OFF_ERROR':
+      state = { ...state, userError: false }
       break
 
     default:

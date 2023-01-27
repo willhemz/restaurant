@@ -45,6 +45,10 @@ export const router = browse([
             path: '/account/dashboard',
             element: <Dashboard />,
           },
+          {
+            path: '/account/wishlist',
+            element: <Wishlist />,
+          },
         ],
       },
       {

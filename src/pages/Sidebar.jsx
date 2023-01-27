@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGenContext } from '../context'
 
 const Sidebar = () => {
-  const { cartNumber, openView } = useGenContext()
+  const { cartNumber, openView, wishNumber } = useGenContext()
   const [view, setView] = useState(false)
   const navigate = useNavigate()
 
@@ -16,7 +16,7 @@ const Sidebar = () => {
         setView(!view)
         break
       case 'account':
-        navigate(x)
+        window.innerWidth < 640 ? navigate(x) : navigate('/account/dashboard')
         openView()
         break
       default:
@@ -44,7 +44,9 @@ const Sidebar = () => {
       {sidebar.map((item) => {
         const { id, icon, path, title } = item
         let view = 'hidden'
+        let show = 'hidden'
         if (title.toLowerCase() === 'cart') view = 'block'
+        if (title.toLowerCase() === 'wishlist') show = 'block'
         return (
           <button
             onClick={() => checkCase(title, path)}
@@ -57,6 +59,10 @@ const Sidebar = () => {
               <p
                 className={`${view} absolute -top-3 -right-5 bg-red-100 rounded-[50%] text-red-900 px-2`}>
                 {cartNumber}
+              </p>
+              <p
+                className={`${show} absolute -top-3 -right-5 bg-red-100 rounded-[50%] text-red-900 px-2`}>
+                {wishNumber}
               </p>
             </div>
             <p className='capitalize text-xs'>{title}</p>

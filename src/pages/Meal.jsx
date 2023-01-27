@@ -4,7 +4,7 @@ import { hero } from '../component/data'
 import { useGenContext } from '../context'
 
 const Meal = () => {
-  const { meals, handleCart } = useGenContext()
+  const { meals, handleCart, login } = useGenContext()
   const { id } = useParams()
   const navigate = useNavigate()
   const { name, image, category, area, ingredients } = meals
@@ -46,12 +46,24 @@ const Meal = () => {
             )
           })}
         </p>
-        <button
-          onClick={() => handleCart({ id, name, image, category })}
-          className='btnLong mt-5'
-          type='submit'>
-          Add to Cart
-        </button>
+        <div className='mt-5 flex gap-3'>
+          {login && (
+            <button
+              onClick={() =>
+                handleCart('wishlist', { id, name, image, category })
+              }
+              className='btnLong'
+              type='submit'>
+              Add to Wishlist
+            </button>
+          )}
+          <button
+            onClick={() => handleCart('cart', { id, name, image, category })}
+            className='btnLong'
+            type='submit'>
+            Add to Cart
+          </button>
+        </div>
       </article>
     </main>
   )
