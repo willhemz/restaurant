@@ -36,9 +36,30 @@ const getLocalStorage = () => {
     }
   }
 }
+
+const getDetail = () => {
+  let detail = localStorage.getItem('detail')
+  return detail
+    ? (detail = JSON.parse(localStorage.getItem('detail')))
+    : (detail = null)
+}
+
 const defaultState = getLocalStorage()
+
 const GenContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState)
+
+  const logAccount = (val) => {
+    let detail = getDetail()
+
+    if (
+      detail &&
+      detail.login.email === val.email &&
+      detail.login.password === val.password
+    ) {
+      dispatch({ type: 'LOGIN', payload: detail })
+    } else dispatch({ type: 'USER_ERROR' })
+  }
 
   const fetchMeals = useCallback(async () => {
     dispatch({ type: 'LOADING' })
@@ -182,28 +203,12 @@ const GenContext = ({ children }) => {
     dispatch({ type: 'LOGOUT' })
   }
 
-  const logAccount = (val) => {
-    let detail = localStorage.getItem('detail')
-    if (detail) {
-      detail = JSON.parse(localStorage.getItem('data'))
-      if (
-        detail.login.email === val.email &&
-        detail.login.password === val.password
-      ) {
-        dispatch({ type: 'LOGIN', payload: detail })
-        console.log(detail)
-      } else dispatch({ type: 'USER_ERROR' })
-    }
-
-    if (!detail) dispatch({ type: 'USER_ERROR' })
-  }
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (state.userError) {
         dispatch({ type: 'OFF_ERROR' })
       }
-    }, 5000)
+    }, 3000)
     return () => clearTimeout(timeout)
   }, [state.userError])
 

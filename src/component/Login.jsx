@@ -4,23 +4,30 @@ import { hero, term } from '../component/data'
 import { useGenContext } from '../context'
 
 const Login = () => {
-  const { logAccount } = useGenContext
+  const { logAccount, userError } = useGenContext()
   const [info, setInfo] = useState({ email: '', password: '' })
-  console.log(info)
 
   const handleInput = (e) => {
     let name = e.target.name
     let value = e.target.value
     setInfo({ ...info, [name]: value })
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    logAccount(info)
+  }
+
   return (
     <main className='w-full mt-20 mb-40 pt-1 bg-red-50 '>
       <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          logAccount(info)
-        }}
+        onSubmit={handleSubmit}
         className='form-control m-5 mb-10 p-5 lg:p-10 shadow-md shadow-gray-200 bg-red-100 rounded-md text-center sm:w-1/2 xl:w-2/5 sm:ml-[50%] sm:-translate-x-1/2'>
+        {userError && (
+          <p className='bg-red-900 text-red-200 p-3 mb-3'>
+            User details is invalid.
+          </p>
+        )}
         <h3 className='font-bold mb-3'>Login to your account</h3>
         <input
           className='bg-transparent border mb-3 p-2 w-full border-b-red-600'
