@@ -10,6 +10,7 @@ const Profile = () => {
     confirmPassword: '',
     oldPassword: '',
   })
+
   const [value, setValue] = useState({
     show: false,
     error: false,
@@ -18,9 +19,12 @@ const Profile = () => {
 
   const handleChange = (e) => {
     let name = e.target.name
-    let value = name === 'image' ? e.target.files[0] : e.target.value
-    setData({ ...data, [name]: value })
+    let value =
+      name === 'image' ? URL.createObjectURL(e.target.files[0]) : e.target.value
+    let file = name === 'image' && e.target.files[0]
+    setData({ ...data, [name]: value, file })
   }
+
   const handleUpdate = (e) => {
     e.preventDefault()
     if (
@@ -29,6 +33,7 @@ const Profile = () => {
     ) {
       delete data.oldPassword
       handleData(data)
+      setData({ ...login, oldPassword: '', password: '', confirmPassword: '' })
       setValue({ ...value, show: true })
     } else if (data.oldPassword !== login.password)
       setValue({ ...value, matchError: true })
@@ -44,13 +49,13 @@ const Profile = () => {
 
   return (
     <section className='right-container w-full'>
-      <h3 className='font-pacifico tracking-widest text-xl text-red-900 mb-8'>
+      <h3 className='font-pacifico tracking-widest text-xl text-red-900 mb-8 xl:ml-28'>
         Manage Profile
       </h3>
       <article className='footer w-full'>
-        <form onSubmit={handleUpdate} className='w-full'>
+        <form onSubmit={handleUpdate} className='w-full sm:w-4/5 xl:w-3/5'>
           <h3 className='font-bold text-lg mb-3'>Basic Info</h3>
-          <div className='form-control shadow-md shadow-red-200 p-3 bg-red-50 grid gap-5'>
+          <div className='form-control shadow-md shadow-red-200 p-3 bg-red-50 grid gap-5 sm:p-10 text-base'>
             <p
               className={`bg-green-200 text-green-800 p-2 ${
                 value.show ? 'block' : 'hidden'
@@ -108,7 +113,6 @@ const Profile = () => {
                 name='image'
                 id='image'
                 files={!login.image ? undefined : data.image}
-                value=''
                 onChange={handleChange}
                 ref={imageRef}
               />
@@ -122,9 +126,9 @@ const Profile = () => {
                   Browse
                 </li>
                 <li className='rounded-r-md p-2 border border-gray-200 basis-2/3'>
-                  {!login.image && !data.image
+                  {data.file === undefined || !data.file.name
                     ? 'Choose file'
-                    : data.image.name}
+                    : data.file.name}
                 </li>
               </button>
             </div>
@@ -178,7 +182,7 @@ const Profile = () => {
           <div className='w-full text-right mt-5'>
             <button
               type='submit'
-              className='bg-red-900 rounded-md p-2 text-red-200'>
+              className='bg-red-900 rounded-md p-2 text-red-200 text-base'>
               Update Proflie
             </button>
           </div>

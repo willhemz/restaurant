@@ -21,7 +21,7 @@ const Account = () => {
         }`}>
         <article className='account--header bg-red-700 w-full p-5 mb-5'>
           <div className='avatar rounded-full w-16 h-16 overflow-hidden bg-transparent mb-5'>
-            {!login.image ? (
+            {login.image === undefined ? (
               <img
                 className='object-cover w-20 h-20 rounded-full'
                 src={hero.avatar}

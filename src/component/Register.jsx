@@ -15,6 +15,8 @@ const Register = () => {
   const { handleData } = useGenContext()
   const navigate = useNavigate()
   const check = useRef()
+  const [pass, setPass] = useState(false)
+  const [repass, setRepass] = useState(false)
 
   const handleInput = (e) => {
     let name = e.target.name
@@ -87,20 +89,25 @@ const Register = () => {
             : 'Email cannot be blank'}
         </label>
         <article
-          className={`flex items-center justify-between border border-b-red-600 p-2 w-full mb-3 ${
+          className={`flex items-center gap-5 justify-between border border-b-red-600 p-2 w-full mb-3 ${
             error.blank && data.password.length === 0 && 'bg-red-400'
           }`}>
           <input
-            className='bg-transparent'
+            className='bg-transparent w-full'
             id='password'
-            type='Password'
+            type={pass ? 'text' : 'password'}
             minLength={8}
             placeholder='password'
             name='password'
             value={data.password}
             onChange={handleInput}
           />
-          {hero.eye}
+          <button
+            className='w-fit'
+            type='button'
+            onClick={() => setPass(!pass)}>
+            {hero.eye}
+          </button>
         </article>
         <label
           htmlFor='password'
@@ -110,20 +117,25 @@ const Register = () => {
           Password cannot be less than 8 characters
         </label>
         <article
-          className={`flex items-center justify-between border border-b-red-600 p-2 w-full mb-3 ${
+          className={`flex items-center gap-5 justify-between border border-b-red-600 p-2 w-full mb-3 ${
             error.pin && data.password !== data.confirmPassword && 'bg-red-400'
           }`}>
           <input
-            className='bg-transparent'
+            className='bg-transparent w-full'
             id='confirmPassword'
-            type='Password'
+            type={repass ? 'text' : 'password'}
             minLength={8}
             placeholder='confirm password'
             name='confirmPassword'
             value={data.confirmPassword}
             onChange={handleInput}
           />
-          {hero.eye}
+          <button
+            className='w-fit'
+            type='button'
+            onClick={() => setRepass(!repass)}>
+            {hero.eye}
+          </button>
         </article>
         <label
           htmlFor='confirmPassword'

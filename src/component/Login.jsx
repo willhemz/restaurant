@@ -6,6 +6,7 @@ import { useGenContext } from '../context'
 const Login = () => {
   const { logAccount, userError } = useGenContext()
   const [info, setInfo] = useState({ email: '', password: '' })
+  const [reveal, setReveal] = useState(false)
 
   const handleInput = (e) => {
     let name = e.target.name
@@ -37,17 +38,22 @@ const Login = () => {
           value={info.email}
           onChange={handleInput}
         />
-        <article className='flex items-center justify-between border border-b-red-600 p-2 w-full mb-3'>
+        <article className='flex gap-5 items-center justify-between border border-b-red-600 p-2 w-full mb-3'>
           <input
-            className='bg-transparent'
-            type='Password'
+            className={`bg-transparent w-full`}
+            type={reveal ? 'text' : 'password'}
             minLength={8}
             placeholder='password'
             name='password'
             value={info.password}
             onChange={handleInput}
           />
-          {hero.eye}
+          <button
+            type='button'
+            className='w-fit'
+            onClick={() => setReveal(!reveal)}>
+            {hero.eye}
+          </button>
         </article>
         <article className='flex w-full text-sm justify-between items-center mb-3'>
           <div className='flex gap-1 items-center'>
