@@ -1,5 +1,5 @@
 import { createBrowserRouter as browse } from 'react-router-dom'
-import { Layout, Error, Register, Login, Dashboard } from './component'
+import { Layout, Error, Register, Login, Dashboard, Profile } from './component'
 import {
   Home,
   Category,
@@ -48,6 +48,10 @@ export const router = browse([
           {
             path: '/account/wishlist',
             element: <Wishlist />,
+          },
+          {
+            path: '/account/profile',
+            element: <Profile />,
           },
         ],
       },

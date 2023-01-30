@@ -38,6 +38,10 @@
     text-decoration: none;
   }
 
+  ul,li,ol {
+    list-style-type: none;
+  }
+
   body {
     margin: 0;
     width: 100%;
