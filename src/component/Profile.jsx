@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useGenContext } from '../context'
+import Address from './Address'
+import { hero } from './data'
 
 const Profile = () => {
-  const { login, handleData } = useGenContext()
+  const { login, handleData, modal, openModal, closeModal } = useGenContext()
   const imageRef = useRef(null)
   const [data, setData] = useState({
     ...login,
@@ -48,14 +50,14 @@ const Profile = () => {
   }, [value])
 
   return (
-    <section className='right-container w-full'>
+    <section className='right-container w-full relative'>
       <h3 className='font-pacifico tracking-widest text-xl text-red-900 mb-8 xl:ml-28'>
         Manage Profile
       </h3>
       <article className='footer w-full'>
         <form onSubmit={handleUpdate} className='w-full sm:w-4/5 xl:w-3/5'>
           <h3 className='font-bold text-lg mb-3'>Basic Info</h3>
-          <div className='form-control shadow-md shadow-red-200 p-3 bg-red-50 grid gap-5 sm:p-10 text-base'>
+          <div className='form-control shadow-md shadow-red-200 p-3 bg-red-50 grid gap-5 sm:p-10 sm:text-base'>
             <p
               className={`bg-green-200 text-green-800 p-2 ${
                 value.show ? 'block' : 'hidden'
@@ -182,11 +184,35 @@ const Profile = () => {
           <div className='w-full text-right mt-5'>
             <button
               type='submit'
-              className='bg-red-900 rounded-md p-2 text-red-200 text-base'>
+              className='bg-red-900 rounded-md p-2 text-red-200 sm:text-base'>
               Update Proflie
             </button>
           </div>
         </form>
+        {login.location === undefined ? (
+          <button
+            onClick={openModal}
+            className='flex flex-col justify-center items-center gap-2 bg-red-100 p-3 rounded-lg mt-10 sm:text-base'
+            type='button'>
+            {hero.plus}Add New Address
+          </button>
+        ) : (
+          <div className='mt-10'>
+            <p className='flex gap-3'>Address: {data.location.address} </p>
+            <p className='flex gap-3'>City: {data.location.city} </p>
+            <p className='flex gap-3'>State: {data.location.state} </p>
+            <p className='flex gap-3'>Country: {data.location.country} </p>
+            <button
+              onClick={openModal}
+              className='flex flex-col justify-center items-center gap-2 bg-red-100 p-3 rounded-lg mt-10 sm:text-base'
+              type='button'>
+              {hero.plus}Change Address
+            </button>
+          </div>
+        )}
+      </article>
+      <article className='relative'>
+        <Address modal={modal} closeModal={closeModal} />
       </article>
     </section>
   )

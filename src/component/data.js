@@ -15,6 +15,9 @@ import {
   AiOutlineGithub,
   AiOutlineHome,
   AiOutlineDownload,
+  AiOutlinePlus,
+  AiOutlineCaretDown,
+  AiOutlineCaretUp,
 } from 'react-icons/ai'
 import {
   BiCategoryAlt,
@@ -88,6 +91,9 @@ export const hero = {
   eye: <BiShow />,
   search: <BiSearch />,
   close: <IoClose />,
+  plus: <AiOutlinePlus />,
+  up: <AiOutlineCaretUp />,
+  down: <AiOutlineCaretDown />,
 }
 
 export const socials = [
@@ -171,5 +177,50 @@ export const account = [
     icon: <BsFillPersonFill />,
     name: 'Manage profile',
     path: '/account/profile',
+  },
+]
+
+export const location = [
+  {
+    id: 1,
+    country: 'Nigeria',
+    states: [
+      { id: 1, name: 'Abia' },
+      { id: 36, name: 'Abuja' },
+      { id: 2, name: 'Adamawa' },
+      { id: 3, name: 'Akwa-Ibom' },
+      { id: 4, name: 'Anambra' },
+      { id: 5, name: 'Bauchi' },
+      { id: 6, name: 'Bayelsa' },
+      { id: 7, name: 'Benue' },
+      { id: 8, name: 'Borno' },
+      { id: 9, name: 'Cross River' },
+      { id: 10, name: 'Delta' },
+      { id: 11, name: 'Ebonyi' },
+      { id: 12, name: 'Edo' },
+      { id: 13, name: 'Ekiti' },
+      { id: 14, name: 'Enugu' },
+      { id: 15, name: 'Gombe' },
+      { id: 16, name: 'Imo' },
+      { id: 17, name: 'Jigawa' },
+      { id: 18, name: 'Kaduna' },
+      { id: 19, name: 'Kano' },
+      { id: 20, name: 'Katsina' },
+      { id: 21, name: 'Kebbi' },
+      { id: 22, name: 'Kogi' },
+      { id: 23, name: 'Kwara' },
+      { id: 24, name: 'Lagos' },
+      { id: 25, name: 'Nassarawa' },
+      { id: 26, name: 'Ogun' },
+      { id: 27, name: 'Ondo' },
+      { id: 28, name: 'Osun' },
+      { id: 29, name: 'Oyo' },
+      { id: 30, name: 'Plateau' },
+      { id: 31, name: 'Rivers' },
+      { id: 32, name: 'Sokoto' },
+      { id: 33, name: 'Taraba' },
+      { id: 34, name: 'Yobe' },
+      { id: 35, name: 'Zamfara' },
+    ],
   },
 ]

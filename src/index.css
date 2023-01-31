@@ -215,4 +215,18 @@
   .category article.footer {
     @apply w-full grid sm:grid-cols-2 place-items-center p-8 gap-10 sm:gap-x-5 lg:grid-cols-3 lg:p-10 xl:grid-cols-4
   }
+
+  /* Others */
+  @keyframes increaseSize {
+    0% {
+      @apply w-0 h-0
+    }
+    100% {
+      @apply w-screen h-screen
+    }
+  }
+
+  .footer--address {
+    animation: increaseSize 500ms ease-in-out forwards;
+  }
 }

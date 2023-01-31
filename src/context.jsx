@@ -51,7 +51,6 @@ const GenContext = ({ children }) => {
 
   const logAccount = (val) => {
     let detail = getDetail()
-
     if (
       detail &&
       detail.login.email === val.email &&
@@ -194,9 +193,13 @@ const GenContext = ({ children }) => {
   }, [state])
 
   const [show, setShow] = useState(false)
+  const [modal, SetModal] = useState(false)
 
   const openView = () => setShow(true)
   const closeView = () => setShow(false)
+
+  const openModal = () => SetModal(true)
+  const closeModal = () => SetModal(false)
 
   const logOut = () => {
     localStorage.setItem('detail', JSON.stringify(state))
@@ -222,6 +225,9 @@ const GenContext = ({ children }) => {
         handleData,
         logOut,
         show,
+        modal,
+        openModal,
+        closeModal,
         logAccount,
         openView,
         closeView,
